@@ -12,7 +12,7 @@ public class RequisicaoHttp {
 
 	public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
 
-		String url = "https://imdb-api.com/en/API/Top250Movies/KAY_URL";
+		String url = "https://imdb-api.com/en/API/Top250Movies/k_cf2mpflg";
 		new RequisicaoHttp(url);
 
 	}
@@ -22,8 +22,7 @@ public class RequisicaoHttp {
 		HttpRequest request = null;
 		HttpResponse<String> reponse = null;
 		try {
-			request = HttpRequest.newBuilder().uri(new URI(url)).header("Content-Type", "text/plain;charset=UTF-8")
-					.GET().build();
+			request = HttpRequest.newBuilder().uri(new URI(url)).GET().build();
 
 			HttpClient httpClient = HttpClient.newHttpClient();
 			reponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -35,8 +34,8 @@ public class RequisicaoHttp {
 			e.printStackTrace();
 		}
 
-		ArrayList<String> lista = new ArrayList<String>();
-		lista.add(reponse.body());
-		System.out.println(lista);
+		String json = reponse.body();
+//		String [] movieArray = json; 
+		System.out.println(json);
 	}
 }
